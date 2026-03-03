@@ -47,11 +47,49 @@ export default function App() {
     navigator.clipboard.writeText(lines.join('\n'))
   }, [canonical])
 
+  const fillTestData = () => {
+    setCanonical({
+      name: 'Evergreen Plumbing & Heating',
+      address: '742 Maple Avenue',
+      city: 'Portland',
+      state: 'OR',
+      zip: '97205',
+      phone: '(503) 555-0147',
+      website: 'https://www.evergreenplumbingpdx.com',
+    })
+    setEntries([
+      {
+        id: Date.now() + 1,
+        directory: 'Google Business Profile',
+        name: 'Evergreen Plumbing & Heating',
+        address: '742 Maple Avenue',
+        phone: '(503) 555-0147',
+        website: 'https://www.evergreenplumbingpdx.com',
+      },
+      {
+        id: Date.now() + 2,
+        directory: 'Yelp',
+        name: 'Evergreen Plumbing and Heating',
+        address: '742 Maple Ave',
+        phone: '503-555-0147',
+        website: 'https://evergreenplumbingpdx.com',
+      },
+      {
+        id: Date.now() + 3,
+        directory: 'Facebook',
+        name: 'Evergreen Plumbing & Heating LLC',
+        address: '742 Maple Avenue, Suite 100',
+        phone: '(503) 555-0147',
+        website: 'https://www.evergreenplumbingpdx.com/',
+      },
+    ])
+  }
+
   const hasCanonical = canonical.name || canonical.address || canonical.phone
 
   return (
     <div className="bg-glow bg-grid min-h-screen">
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-12 animate-fadeIn">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-4 py-12 animate-fadeIn">
         {/* Breadcrumb */}
         <nav className="mb-8 text-sm text-galactic">
           <a href="https://seo-tools-tau.vercel.app/" className="text-azure hover:text-white transition-colors">Free Tools</a>
@@ -84,6 +122,17 @@ export default function App() {
             </p>
           </div>
         </header>
+
+        {/* Fill Test Data */}
+        <div className="flex justify-end mb-4">
+          <button
+            type="button"
+            onClick={fillTestData}
+            className="px-3 py-1.5 text-xs font-mono bg-prince/20 text-prince border border-prince/30 rounded hover:bg-prince/30 transition-colors focus:outline-none focus:ring-2 focus:ring-prince focus:ring-offset-2 focus:ring-offset-abyss"
+          >
+            Fill Test Data
+          </button>
+        </div>
 
         {/* Canonical NAP Input */}
         <CanonicalNAP canonical={canonical} setCanonical={setCanonical} onCopy={handleCopyNAP} />
